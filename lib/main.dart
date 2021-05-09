@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Center(
                       child: Table(children: [
-                    TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
-                    TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
-                    TableRow(children: [Eye(), Eye(), Eye(), Eye()])
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()])
                   ])))));
     })));
   }
