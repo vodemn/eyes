@@ -36,20 +36,23 @@ class _EyeState extends State<Eye> {
           } else {
             position = relaviteCenter;
           }
-          return SizedBox.fromSize(
-              key: containerKey,
-              size: Size.square(widget.size),
-              child: Stack(children: [
-                Icon(Icons.visibility, color: widget.color, size: widget.size),
-                Center(
-                    child: CustomPaint(
-                        painter: CirclePainter(widget.size * SCALE_HIDE / 2, widget.eyeballColor))),
-                Positioned(
-                    bottom: position.dy,
-                    right: position.dx,
-                    child: CustomPaint(
-                        painter: CirclePainter(widget.size * SCALE_EYE / 2, widget.color)))
-              ]));
+          return Center(
+              child: SizedBox.fromSize(
+                  key: containerKey,
+                  size: Size.square(widget.size),
+                  child: Center(
+                      child: Stack(children: [
+                    Icon(Icons.visibility, color: widget.color, size: widget.size),
+                    Center(
+                        child: CustomPaint(
+                            painter:
+                                CirclePainter(widget.size * SCALE_HIDE / 2, widget.eyeballColor))),
+                    Positioned(
+                        bottom: position.dy,
+                        right: position.dx,
+                        child: CustomPaint(
+                            painter: CirclePainter(widget.size * SCALE_EYE / 2, widget.color)))
+                  ]))));
         });
   }
 

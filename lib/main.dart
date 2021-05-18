@@ -15,13 +15,11 @@ class MyApp extends StatelessWidget {
           child: ListenableMouseRegion(
               child: Container(
                   color: Colors.lightBlueAccent,
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Center(
                       child: Table(children: [
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()]),
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye()])
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
+                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()])
                   ])))));
     })));
   }
