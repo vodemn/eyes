@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:rxdart/subjects.dart';
 
 class ListenableMouseRegion extends StatefulWidget {
   final Widget child;
@@ -16,8 +17,9 @@ class ListenableMouseRegion extends StatefulWidget {
 }
 
 class ListenableMouseRegionState extends State<ListenableMouseRegion> {
-  StreamController<Offset?> _updates = StreamController<Offset?>.broadcast();
-
+  Offset _offset = Offset.zero;
+  double _scrollY = 0.0;
+  BehaviorSubject<Offset?> _updates = BehaviorSubject<Offset?>();
   Stream<Offset?> get position => _updates.stream;
 
   @override
@@ -28,13 +30,24 @@ class ListenableMouseRegionState extends State<ListenableMouseRegion> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-        onHover: (event) {
-          _updates.add(event.position);
+    return NotificationListener<ScrollUpdateNotification>(
+        onNotification: (notification) {
+          _scrollY = notification.metrics.extentBefore;
+          _setPosition();
+          return true;
         },
-        onExit: (event) {
-          _updates.add(null);
-        },
-        child: widget.child);
+        child: MouseRegion(
+            onHover: (event) {
+              _offset = event.position;
+              _setPosition();
+            },
+            onExit: (event) {
+              _updates.add(null);
+            },
+            child: widget.child));
+  }
+
+  void _setPosition() {
+    _updates.add(_offset + Offset(0, _scrollY));
   }
 }

@@ -13,14 +13,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(home: Scaffold(body: Builder(builder: (context) {
       return Center(
           child: ListenableMouseRegion(
-              child: Container(
-                  color: Colors.lightBlueAccent,
-                  child: Center(
-                      child: Table(children: [
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
-                    const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()])
-                  ])))));
+              child: SingleChildScrollView(
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 2,
+                      color: Colors.lightBlueAccent,
+                      child: Center(
+                          child: Table(children: [
+                        const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
+                        const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()]),
+                        const TableRow(children: [Eye(), Eye(), Eye(), Eye(), Eye()])
+                      ]))))));
     })));
   }
 }
