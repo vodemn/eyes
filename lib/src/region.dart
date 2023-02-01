@@ -31,20 +31,22 @@ class ListenableMouseRegionState extends State<ListenableMouseRegion> {
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollUpdateNotification>(
-        onNotification: (notification) {
-          _scrollY = notification.metrics.extentBefore;
+      onNotification: (notification) {
+        _scrollY = notification.metrics.extentBefore;
+        _setPosition();
+        return true;
+      },
+      child: MouseRegion(
+        onHover: (event) {
+          _offset = event.position;
           _setPosition();
-          return true;
         },
-        child: MouseRegion(
-            onHover: (event) {
-              _offset = event.position;
-              _setPosition();
-            },
-            onExit: (event) {
-              _updates.add(null);
-            },
-            child: widget.child));
+        onExit: (event) {
+          _updates.add(null);
+        },
+        child: widget.child,
+      ),
+    );
   }
 
   void _setPosition() {
